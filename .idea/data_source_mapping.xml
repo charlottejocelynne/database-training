@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
-    <file url="file://$PROJECT_DIR$/kasdfj.sql" value="001cd5ef-83d7-481c-8f74-4d6ae3b9358a" />
     <file url="file://$PROJECT_DIR$/postgresql.sql" value="001cd5ef-83d7-481c-8f74-4d6ae3b9358a" />
   </component>
 </project>
