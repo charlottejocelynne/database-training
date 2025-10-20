@@ -35,15 +35,16 @@ values (1, 'cayott', '12345', 'admin', 'Charlotte Jocelynne', '08123456789', 'De
        (10, 'rio', '90123', 'customer', 'Rio Saputra', '08120123456', 'Karangasem'),
        (11, 'lina', '01234', 'customer', 'Lina Sari', '08121234567', 'Buleleng'),
        (12, 'yoga', '11223', 'customer', 'I Made Yoga', '08122345678', 'Denpasar'),
-       (13, 'fajar', '22334', 'customer', 'Fajar Nugraha', '08123456780', 'Klungkung');
+       (13, 'fajar', '22334', 'customer', 'Fajar Nugraha', '08123456780', 'Klungkung'),
+       (14, 'cahyaa', '22335', 'customer', 'Cahya Kumala', '08123347280','Tabanan' );
 
 /*
  add membership data to the 'members' table with a relationship to the users table (user_id).
  the points column stores the number of points.
  */
 insert into members (id, user_id, poin)
-values (1, 3, 13),
-       (2, 2, 9),
+values (1, 2, 13),
+       (2, 3, 9),
        (3, 4, 15),
        (4, 5, 10),
        (5, 6, 25),
@@ -59,7 +60,6 @@ values (1, 3, 13),
 adds the main sales transaction data to the 'sales' table.
 the 'total' column is the total transaction value.
  */
-
 insert into sales (id, member_id, total, created_at, created_by)
 values (1,1, 19000.00, now(), 2),
        (2,2, 22000.00, now(), 2),
@@ -74,36 +74,41 @@ values (1,1, 19000.00, now(), 2),
        (11,  11, 25000.00, NOW(), 2),
        (12, 12, 10000.00, NOW(), 2);
 
+insert into sales (id, total, created_at, created_by)
+values (13, 16000.00, NOW(), 1);
 
 /*
 add item details per transaction to the 'sales_item' table.
 each row represents the products purchased in a single transaction.
 the 'subtotal' column = price * qty
  */
-
 insert into sales_item
 (id, sales_id, product_id, product_name, price, qty, subtotal, created_at, created_by, updated_at, updated_by)
-values (1, 1, '001', 'beras', 10000, 1, 10000, NOW(), 2, NOW(), 1),
-       (2, 1, '004', 'sabun', 4000, 1, 4000, NOW(), 2, NOW(), 1),
-       (3, 1, '005', 'shampo', 5000, 1, 5000, NOW(), 2, NOW(), 1),
-       (4, 2, '002', 'gula', 8000, 1, 8000, NOW(), 3, NOW(), 1),
-       (5, 2, '003', 'minyak goreng', 12000, 1, 12000, NOW(), 3, NOW(), 1),
-       (6, 2, '004', 'sabun', 4000, 1, 4000, NOW(), 3, NOW(), 1),
-       (7, 3, '001', 'beras', 10000, 2, 20000, NOW(), 2, NOW(), 1),
-       (8, 3, '004', 'sabun', 4000, 1, 4000, NOW(), 2, NOW(), 1),
-       (9, 3, '005', 'shampo', 5000, 1, 5000, NOW(), 2, NOW(), 1),
-       (10, 4, '002', 'gula', 8000, 2, 16000, NOW(), 2, NOW(), 1),
-       (11, 5, '003', 'minyak goreng', 12000, 2, 24000, NOW(), 2, NOW(), 1),
-       (12, 5, '009', 'mie instan', 3500, 3, 10500, NOW(), 2, NOW(), 1),
-       (13, 6, '010', 'tisu wajah', 8000, 1, 8000, NOW(), 2, NOW(), 1),
-       (14, 6, '004', 'sabun', 4000, 2, 8000, NOW(), 2, NOW(), 1),
-       (15, 7, '005', 'shampo', 5000, 2, 10000, NOW(), 2, NOW(), 1),
-       (16, 8, '006', 'kopi bubuk', 15000, 1, 15000, NOW(), 2, NOW(), 1),
-       (17, 8, '007', 'teh celup', 9000, 1, 9000, NOW(), 2, NOW(), 1),
-       (18, 9, '009', 'mie instan', 3500, 2, 7000, NOW(), 2, NOW(), 1),
-       (19, 10, '004', 'sabun', 4000, 3, 12000, NOW(), 2, NOW(), 1),
-       (20, 11, '008', 'susu kental manis', 12000, 2, 24000, NOW(), 2, NOW(), 1),
-       (21, 12, '003', 'minyak goreng', 12000, 1, 12000, NOW(), 2, NOW(), 1);
+values (1, 1, '001', 'beras', 10000, 1, 10000, NOW(), 1, NOW(), 1),
+       (2, 1, '004', 'sabun', 4000, 1, 4000, NOW(), 1, NOW(), 1),
+       (3, 1, '005', 'shampo', 5000, 1, 5000, NOW(), 1, NOW(), 1),
+       (4, 2, '002', 'gula', 8000, 1, 8000, NOW(), 1, NOW(), 1),
+       (5, 2, '003', 'minyak goreng', 12000, 1, 12000, NOW(), 1, NOW(), 1),
+       (6, 2, '004', 'sabun', 4000, 1, 4000, NOW(), 1, NOW(), 1),
+       (7, 3, '001', 'beras', 10000, 2, 20000, NOW(), 1, NOW(), 1),
+       (8, 3, '004', 'sabun', 4000, 1, 4000, NOW(), 1, NOW(), 1),
+       (9, 3, '005', 'shampo', 5000, 1, 5000, NOW(), 1, NOW(), 1),
+       (10, 4, '002', 'gula', 8000, 2, 16000, NOW(), 1, NOW(), 1),
+       (11, 5, '003', 'minyak goreng', 12000, 2, 24000, NOW(), 1, NOW(), 1),
+       (12, 5, '009', 'mie instan', 3500, 3, 10500, NOW(), 1, NOW(), 1),
+       (13, 6, '010', 'tisu wajah', 8000, 1, 8000, NOW(), 1, NOW(), 1),
+       (14, 6, '004', 'sabun', 4000, 2, 8000, NOW(), 1, NOW(), 1),
+       (15, 7, '005', 'shampo', 5000, 2, 10000, NOW(), 1, NOW(), 1),
+       (16, 8, '006', 'kopi bubuk', 15000, 1, 15000, NOW(), 1, NOW(), 1),
+       (17, 8, '007', 'teh celup', 9000, 1, 9000, NOW(), 1, NOW(), 1),
+       (18, 9, '009', 'mie instan', 3500, 2, 7000, NOW(), 1, NOW(), 1),
+       (19, 10, '004', 'sabun', 4000, 3, 12000, NOW(), 1, NOW(), 1),
+       (20, 11, '008', 'susu kental manis', 12000, 2, 24000, NOW(), 1, NOW(), 1),
+       (21, 12, '003', 'minyak goreng', 12000, 1, 12000, NOW(), 1, NOW(), 1);
+
+insert into sales_item (id, sales_id, product_id, product_name, price, qty, subtotal, created_at, created_by, updated_at, updated_by)
+values (22, 13, '003', 'minyak goreng', 12000, 1, 12000, NOW(), 1, NOW(), 1),
+       (23, 13, '004', 'sabun', 4000, 1, 4000, NOW(), 1, NOW(), 1);
 
 /*
  this query take all members along with their user information.
@@ -122,12 +127,10 @@ it returns how many member records exist in the database.
 select count(*) as "Number of members"
 from members;
 
-
 /*
  this query take the total spending and point information for a specific user (with user_id = 12).
  it joins the "sales", "members", and "users" tables to display the members name, the total amount they have spent (SUM of sales.total), and their current points (m.poin)
  */
-
 select u.name       as "Name",
        sum(s.total) as "Total",
        m.poin       as "Poin"
@@ -136,7 +139,6 @@ from sales as s
          join users as u on m.user_id = u.id
 where s.member_id = 1
 group by u.name, m.poin;
-SELECT * FROM sales;
 
 /*
 this query displays product sales statistics for all time.
@@ -152,3 +154,43 @@ from sales_item si
 group by si.product_name, si.price
 order by "Total Amount" desc;
 
+/*
+1. Show all sales information with the member’s info with the following columns:
+Created at
+Sold by (from created_by FK)
+Total
+Customer username (use member_id FK) → can be null / empty
+Customer Name (use member_id FK) → can be null / empty
+MAKE SURE ALL sales data is included in the query result, not a single one is missing!
+ */
+
+select
+s.created_at as "Created At",
+s.created_by as "Sold by",
+s.total as "Total",
+u.username as "Customer Username",
+u.name as "Customer Name"
+
+from sales as s
+    left join members as m on s.member_id = m.id
+    left join users as u on m.user_id = u.id
+group by u.username, s.created_at, s.created_by, s.total, u.username, u.name;
+
+/*2. Show all users data with the following columns:
+ID
+Username
+Role
+Name
+Member poin (only if the user is member)
+MAKE SURE ALL users data is included in the query result, not a single one is missing!
+ */
+
+select
+    u.id as "ID",
+    u.username as "Username",
+    u.role as "Role",
+    u.name as "Name",
+    m.poin as "Member Poin"
+from users as u
+left join members as m on u.id  = m.user_id
+order by u.id;
