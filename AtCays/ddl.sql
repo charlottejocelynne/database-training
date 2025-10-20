@@ -3,7 +3,7 @@ from pg_tables
 where schemaname = 'public';
 
 create table products (
-    id int not null,
+    id serial not null,
     name varchar(50) not null,
     price decimal (10,2) not null,
     primary key (id)
