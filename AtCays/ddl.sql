@@ -45,6 +45,11 @@ create table sales (
     constraint fk_sales_updated_by foreign key (updated_by) references users (id)
 );
 
+alter table sales
+drop column user_id;
+
+select * from sales;
+
 create table sales_item (
     id bigserial primary key,
     sales_id bigint not null,

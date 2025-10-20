@@ -60,19 +60,19 @@ adds the main sales transaction data to the 'sales' table.
 the 'total' column is the total transaction value.
  */
 
-insert into sales (id, user_id, member_id, total, created_at, created_by)
-values (1, 2, 1, 19000.00, now(), 2),
-       (2, 3, 2, 22000.00, now(), 2),
-       (3, 4, 3, 27000.00, NOW(), 2),
-       (4, 5, 4, 16000.00, NOW(), 2),
-       (5, 6, 5, 35000.00, NOW(), 2),
-       (6, 7, 6, 19000.00, NOW(), 2),
-       (7, 8, 7, 12000.00, NOW(), 2),
-       (8, 9, 8, 28000.00, NOW(), 2),
-       (9, 10, 9, 8000.00, NOW(), 2),
-       (10, 11, 10, 15000.00, NOW(), 2),
-       (11, 12, 11, 25000.00, NOW(), 2),
-       (12, 13, 12, 10000.00, NOW(), 2);
+insert into sales (id, member_id, total, created_at, created_by)
+values (1,1, 19000.00, now(), 2),
+       (2,2, 22000.00, now(), 2),
+       (3, 3, 27000.00, NOW(), 2),
+       (4,4, 16000.00, NOW(), 2),
+       (5,5, 35000.00, NOW(), 2),
+       (6,6, 19000.00, NOW(), 2),
+       (7,  7, 12000.00, NOW(), 2),
+       (8,8, 28000.00, NOW(), 2),
+       (9, 9, 8000.00, NOW(), 2),
+       (10, 10, 15000.00, NOW(), 2),
+       (11,  11, 25000.00, NOW(), 2),
+       (12, 12, 10000.00, NOW(), 2);
 
 
 /*
@@ -127,15 +127,16 @@ from members;
  this query take the total spending and point information for a specific user (with user_id = 12).
  it joins the "sales", "members", and "users" tables to display the members name, the total amount they have spent (SUM of sales.total), and their current points (m.poin)
  */
-select
-u.name as "Name",
-SUM(s.total) as "Total",
-m.poin as "Poin"
+
+select u.name       as "Name",
+       sum(s.total) as "Total",
+       m.poin       as "Poin"
 from sales as s
-join members as m on s.member_id = m.id
-join users as u on s.user_id = u.id
-where s.user_id = 12
+         join members as m on s.member_id = m.id
+         join users as u on m.user_id = u.id
+where s.member_id = 1
 group by u.name, m.poin;
+SELECT * FROM sales;
 
 /*
 this query displays product sales statistics for all time.
