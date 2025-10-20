@@ -61,18 +61,18 @@ adds the main sales transaction data to the 'sales' table.
 the 'total' column is the total transaction value.
  */
 insert into sales (id, member_id, total, created_at, created_by)
-values (1,1, 19000.00, now(), 2),
-       (2,2, 22000.00, now(), 2),
-       (3, 3, 27000.00, NOW(), 2),
-       (4,4, 16000.00, NOW(), 2),
-       (5,5, 35000.00, NOW(), 2),
-       (6,6, 19000.00, NOW(), 2),
-       (7,  7, 12000.00, NOW(), 2),
-       (8,8, 28000.00, NOW(), 2),
-       (9, 9, 8000.00, NOW(), 2),
-       (10, 10, 15000.00, NOW(), 2),
-       (11,  11, 25000.00, NOW(), 2),
-       (12, 12, 10000.00, NOW(), 2);
+values (1,1, 19000.00, now(), 1),
+       (2,2, 22000.00, now(), 1),
+       (3, 3, 27000.00, NOW(), 1),
+       (4,4, 16000.00, NOW(), 1),
+       (5,5, 35000.00, NOW(), 1),
+       (6,6, 19000.00, NOW(), 1),
+       (7,  7, 12000.00, NOW(), 1),
+       (8,8, 28000.00, NOW(), 1),
+       (9, 9, 8000.00, NOW(), 1),
+       (10, 10, 15000.00, NOW(), 1),
+       (11,  11, 25000.00, NOW(), 1),
+       (12, 12, 10000.00, NOW(), 1);
 
 insert into sales (id, total, created_at, created_by)
 values (13, 16000.00, NOW(), 1);
@@ -166,7 +166,7 @@ MAKE SURE ALL sales data is included in the query result, not a single one is mi
 
 select
 s.created_at as "Created At",
-s.created_by as "Sold by",
+u_admin.id  as "Sold by",
 s.total as "Total",
 u.username as "Customer Username",
 u.name as "Customer Name"
@@ -174,7 +174,22 @@ u.name as "Customer Name"
 from sales as s
     left join members as m on s.member_id = m.id
     left join users as u on m.user_id = u.id
-group by u.username, s.created_at, s.created_by, s.total, u.username, u.name;
+    left join users as u_admin on s.created_by = u_admin.id
+group by u.username, s.created_at, u_admin.id, s.total, u.username, u.name
+order by s.created_at desc;
+
+select
+    s.created_at as "Created At",
+    u_sold.name as "Sold By",
+    s.total as "Total",
+    u_customer.username as "Customer Username",
+    u_customer.name as "Customer Name"
+from sales as s
+    left join users as u_sold on s.created_by = u_sold.id              -- untuk ambil nama penjual
+    left join members as m on s.member_id = m.id                       -- untuk ambil data member
+    left join users as u_customer on m.user_id = u_customer.id         -- untuk ambil nama & username customer
+group by u_sold.name, s.created_at, s.total,  u_customer.username, u_customer.name
+order by s.created_at desc;
 
 /*2. Show all users data with the following columns:
 ID
